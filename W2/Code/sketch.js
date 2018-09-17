@@ -36,14 +36,14 @@ let mCanvas;
 
 function preload(){
 
-    soundBirds = loadSound('/sound/birds.wav');
-    soundBell = loadSound('/sound/bell.wav');
-    soundGlass = loadSound('/sound/glass.wav');
-    soundGong = loadSound('/sound/gong.wav');
-    soundGuitar = loadSound('/sound/guitar.wav');
-    soundSeller = loadSound('/sound/seller.wav');
-    soundTrafficLight = loadSound('/sound/traffic light.wav');
-    soundWater = loadSound('/sound/waterdrops.wav');
+    soundBirds = loadSound('sound/birds.wav');
+    soundBell = loadSound('sound/bell.wav');
+    soundGlass = loadSound('sound/glass.wav');
+    soundGong = loadSound('sound/gong.wav');
+    soundGuitar = loadSound('sound/guitar.wav');
+    soundSeller = loadSound('sound/seller.wav');
+    soundTrafficLight = loadSound('sound/traffic light.wav');
+    soundWater = loadSound('sound/waterdrops.wav');
 
 
     mSounds.push(soundBirds);
