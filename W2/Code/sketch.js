@@ -297,11 +297,15 @@ function drawBirdsGraphics(){
 
 function drawWaterGraphics(){
     
+    if(mWaterSoundAmplitude.getLevel()<0.15)return;
+
     let xpos = map(soundWater.currentTime(),0,soundWater.duration(),0,windowWidth);
-    let ypos = random(20, 400);
+    let ypos = windowHeight/2;
 
     fill(random(0,255), random(0,255),random(0,255)); 
     strokeWeight(0);
+
+    
     let width = map(mWaterSoundAmplitude.getLevel(),0,1,10,400);
     ellipse(xpos, ypos, width);
 
