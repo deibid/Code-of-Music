@@ -77,7 +77,7 @@ function setup(){
 
 
     mInputText = createInput("");
-    mInputText.attribute("placeholder","Enter a sound name");
+    mInputText.attribute("placeholder","Enter a sound name. (use 'all' or 'stop' for master control)");
     mInputText.parent("input-container");
     mInputText.id("input-text");
 
