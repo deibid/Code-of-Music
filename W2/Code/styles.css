@@ -1,0 +1,64 @@
+body{
+    margin: 0px;
+}
+
+#canvas-container{
+    position: absolute;
+}
+
+#input-container{
+    position: absolute;
+    bottom: 96px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+#input-text{
+    width:50%;
+    height: auto;
+    text-align: center;
+    font-size: 1.5em;
+    padding: 4px;
+    background-color: #323232;
+    border: 2px solid white;
+    color: white;
+
+}
+
+
+
+#sound-tag-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    height: 100%;
+    padding: 8px;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+#sound-tag-container div{
+    margin: 6px;
+    width: 100%;
+    text-align: center;
+    padding: 8px;
+}
+
+
+.sound-active{
+    color:#323232;
+    background-color: white;
+    border: 1px solid #323232;
+
+}
+
+.sound-inactive{
+    color:white;
+    background-color: #323232;
+    border: 1px solid white;
+}
