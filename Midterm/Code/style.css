@@ -52,7 +52,7 @@ body{
     display: flex;
     flex-direction: row;
     align-items: center;
-    padding: 0 40px;
+    padding: 0 20px;
 
 }
 
@@ -61,7 +61,7 @@ body{
     display: flex;
     align-items: center;
     background: #929292;
-    flex-grow: 3;
+    flex-grow: 4;
     height: 30px;
     padding: 0px;
     padding-left: 24px;
@@ -71,7 +71,7 @@ body{
 }
 
 .synth-param-value{
-    flex-grow: 1;
+    flex-grow: 1.5;
     height: 30px;
     border: 0;
     background: #2E2C2E;

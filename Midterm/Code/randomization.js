@@ -9,7 +9,8 @@ let mRandomizationMap = {
             "type":"numeric-integer",
             "min":-50,
             "max":0,
-            "value":-9
+            "value":-9,
+            "units":"dB"
         },
         "type":{
             "r":true,
@@ -24,7 +25,8 @@ let mRandomizationMap = {
             "type":"numeric-integer",
             "min":-50,
             "max":0,
-            "value":0
+            "value":0,
+            "units":"dB"
         },
         "type":{
             "r":true,
@@ -37,22 +39,26 @@ let mRandomizationMap = {
         "attack":{
             "r":true,
             "type":"numeric-normalized",
-            "value":0
+            "value":0,
+            "units":"s"
         },
         "decay":{
             "r":true,
             "type":"numeric-normalized",
-            "value":0
+            "value":0,
+            "units":"s"
         },
         "sustain":{
             "r":true,
             "type":"numeric-normalized",
-            "value":0
+            "value":0,
+            "units":"%"
         },
         "release":{
             "r":true,
             "type":"numeric-normalized",
-            "value":0
+            "value":0,
+            "units":"s"
         },
     },
     "filter":{
@@ -60,14 +66,15 @@ let mRandomizationMap = {
             "r":true,
             "type":"set",
             "options":["lowpass","highpass"],
-            "value":"sine"
+            "value":"lowpass"
         },
         "frequency":{
             "r":true,
             "type":"numeric-integer",
             "min":1000,
             "max":0,
-            "value":0
+            "value":200,
+            "units":"Hz"
         },
     },
     "filterEnvelope":{
@@ -76,27 +83,32 @@ let mRandomizationMap = {
             "type":"numeric-integer",
             "min":1000,
             "max":0,
-            "value":0
+            "value":0,
+            "units":"Hz"
         },
         "attack":{
             "r":true,
             "type":"numeric-normalized",
-            "value":0
+            "value":0,
+            "units":"s"
         },
         "decay":{
             "r":true,
             "type":"numeric-normalized",
-            "value":0
+            "value":0,
+            "units":"s"
         },
         "sustain":{
             "r":true,
             "type":"numeric-normalized",
-            "value":0
+            "value":0,
+            "units":"%"
         },
         "release":{
             "r":true,
             "type":"numeric-normalized",
-            "value":0
+            "value":0,
+            "units":"s"
         }
     }
 };

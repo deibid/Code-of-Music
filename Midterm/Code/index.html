@@ -28,12 +28,12 @@
               <div class="synth-params-list">
 
                 <div class="synth-param-pair-container">
-                  <p class="synth-param-name">Type</p>
-                  <button class="synth-param-value">Sine</p>
+                  <p class="synth-param-name" >Type</p>
+                  <button class="synth-param-value" id="oscillator1-type">Sine</p>
                 </div>
                 <div class="synth-param-pair-container">
                     <p class="synth-param-name">Type</p>
-                    <button class="synth-param-value">Sine</p>
+                    <button class="synth-param-value" id="oscillator1-volume">Sine</p>
                 </div>
               </div>
           </div>        
@@ -42,11 +42,11 @@
               <div class="synth-params-list">
                   <div class="synth-param-pair-container">
                       <p class="synth-param-name">Type</p>
-                      <button class="synth-param-value">Sine</p>
+                      <button class="synth-param-value" id="oscillator2-type">Sine</p>
                     </div>
                     <div class="synth-param-pair-container">
                         <p class="synth-param-name">Type</p>
-                        <button class="synth-param-value">Sine</p>
+                        <button class="synth-param-value" id="oscillator2-volume">Sine</p>
                     </div>
               </div>
 
@@ -60,21 +60,21 @@
             <div class="synth-params-list">
 
                 <div class="synth-param-pair-container">
-                    <p class="synth-param-name">Type</p>
-                    <button class="synth-param-value">Sine</p>
+                    <p class="synth-param-name">Attack</p>
+                    <button class="synth-param-value" id="envelope-attack">Sine</p>
                   </div>
                   <div class="synth-param-pair-container">
-                      <p class="synth-param-name">Type</p>
-                      <button class="synth-param-value">Sine</p>
+                      <p class="synth-param-name">Decay</p>
+                      <button class="synth-param-value" id="envelope-decay">Sine</p>
                   </div>
 
                   <div class="synth-param-pair-container">
-                      <p class="synth-param-name">Type</p>
-                      <button class="synth-param-value">Sine</p>
+                      <p class="synth-param-name">Sustain</p>
+                      <button class="synth-param-value" id="envelope-sustain">Sine</p>
                     </div>
                     <div class="synth-param-pair-container">
-                        <p class="synth-param-name">Type</p>
-                        <button class="synth-param-value">Sine</p>
+                        <p class="synth-param-name">Release</p>
+                        <button class="synth-param-value" id="envelope-release">Sine</p>
                     </div>
 
             </div>
@@ -82,12 +82,47 @@
 
         <div class="synth-block-container">
             <p class="component-tag">Filter</p>
-            <div class="synth-params-list"></div>
+            <div class="synth-params-list">
+
+                <div class="synth-param-pair-container">
+                    <p class="synth-param-name">Type</p>
+                    <button class="synth-param-value" id="filter-type">Lowpass</p>
+                  </div>
+                  <div class="synth-param-pair-container">
+                      <p class="synth-param-name">Frequency</p>
+                      <button class="synth-param-value" id="filter-frequency">660Hz</p>
+                  </div>
+
+            </div>
         </div>
 
         <div class="synth-block-container">
             <p class="component-tag">Filter Envelope</p>
-            <div class="synth-params-list"></div>
+            <div class="synth-params-list">
+                
+                <div class="synth-param-pair-container">
+                    <p class="synth-param-name">Frequency</p>
+                    <button class="synth-param-value" id="filterEnvelope-frequency">660Hz</p>
+                </div>
+                <div class="synth-param-pair-container">
+                    <p class="synth-param-name">Attack</p>
+                    <button class="synth-param-value" id="filterEnvelope-attack">Sine</p>
+                  </div>
+                  <div class="synth-param-pair-container">
+                      <p class="synth-param-name">Decay</p>
+                      <button class="synth-param-value" id="filterEnvelope-decay">Sine</p>
+                  </div>
+
+                  <div class="synth-param-pair-container">
+                      <p class="synth-param-name">Sustain</p>
+                      <button class="synth-param-value" id="filterEnvelope-sustain">Sine</p>
+                    </div>
+                    <div class="synth-param-pair-container">
+                        <p class="synth-param-name">Release</p>
+                        <button class="synth-param-value" id="filterEnvelope-release">Sine</p>
+                    </div>
+
+            </div>
         </div>
         
 

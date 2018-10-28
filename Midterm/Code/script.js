@@ -165,6 +165,7 @@ function assignSynthParameters(){
   mSynth1.set(synth1Options);
   mSynth2.set(synth2Options);
 
+  updateUIWithNewParameters();
 
 
   console.log("Synth1: ",JSON.stringify(synth1Options,null,null));
@@ -172,6 +173,32 @@ function assignSynthParameters(){
   
   console.log("Synth2: ",JSON.stringify(synth2Options,null,null));
   console.log("Synth2: ",JSON.stringify(mSynth2.get(),null,null));
+
+}
+
+
+function updateUIWithNewParameters(){
+
+  console.log("estoy en updateUI");
+
+  let masterKeys = Object.keys(mRandomizationMap);
+  masterKeys.forEach(key =>{
+
+      let innerKeys = Object.keys(mRandomizationMap[key]);
+      innerKeys.forEach(innerKey =>{
+          let item = mRandomizationMap[key][innerKey];
+          let parsedId = "#"+key + "-"+innerKey;
+          let units = (item.units !==undefined)?item.units:"";
+          let value = item.value+ " "+units;
+
+          console.log("ID a Update: "+parsedId);
+          
+          $(parsedId).html(value);
+        
+      });
+  });
+
+
 
 }
 
