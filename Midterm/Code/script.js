@@ -3,6 +3,10 @@ let mSynth1 = new Tone.PolySynth(5,Tone.MonoSynth).toMaster();
 //TODO connectar otro synth y ver los dos osciladores en accion para el shape de señal
 let mSynth2 = new Tone.PolySynth(5,Tone.MonoSynth).toMaster();
 
+//  Awesome inspiration from this app: https://dotpiano.com/
+let mColors = ["#4356B5","#7962BA","#9841A3","#C0326B","#E4533C","#F29246","#F5BD46","#CEBE3D","#8EBA3B","#4FB155","#4BB4A1","#4998B4"];
+let mDefaultColor = "#2E2C2E";
+let mInitialColor = 0;
 
 
 let mMidiKeyboard;
@@ -15,9 +19,37 @@ function setup(){
 
 
   $("#randomize-button").click(function(){
-    
     assignSynthParameters();
   });
+
+
+  let buttons = $(".synth-param-pair-container").find("button");
+  console.log("Bottones: "+JSON.stringify(buttons,null,null));
+  buttons.each(function(){
+    this.addEventListener("click",function(){
+        // console.log("Click: "+JSON.stringify(event.id,null,null));
+        console.log("ID: "+this.id);
+        let key = this.id.split("-")[0];
+        let innerKey = this.id.split("-")[1];
+
+        mRandomizationMap[key][innerKey].r = !mRandomizationMap[key][innerKey].r;
+        let shouldRandomize = mRandomizationMap[key][innerKey].r;
+
+        if(shouldRandomize){
+          let masterKeys = Object.keys(mRandomizationMap);
+          let index = masterKeys.indexOf(key);
+          let color = mColors[mInitialColor+index];
+          console.log("Color")
+          $(this).css("background-color",color);
+        }else{
+          $(this).css("background-color",mDefaultColor);
+        }
+
+
+    })
+  })
+
+
 
   
 
@@ -159,6 +191,7 @@ function keyPressed(){
 function assignSynthParameters(){
 
   randomize();
+  mInitialColor = getRandomInt(0,mColors.length-Object.keys(mRandomizationMap).length);
   let synth1Options = getRandomizedSynthesizerOptions(1);
   let synth2Options = getRandomizedSynthesizerOptions(2);
 
@@ -168,18 +201,16 @@ function assignSynthParameters(){
   updateUIWithNewParameters();
 
 
-  console.log("Synth1: ",JSON.stringify(synth1Options,null,null));
-  console.log("Synth1: ",JSON.stringify(mSynth1.get(),null,null));
+  // console.log("Synth1: ",JSON.stringify(synth1Options,null,null));
+  // console.log("Synth1: ",JSON.stringify(mSynth1.get(),null,null));
   
-  console.log("Synth2: ",JSON.stringify(synth2Options,null,null));
-  console.log("Synth2: ",JSON.stringify(mSynth2.get(),null,null));
+  // console.log("Synth2: ",JSON.stringify(synth2Options,null,null));
+  // console.log("Synth2: ",JSON.stringify(mSynth2.get(),null,null));
 
 }
 
 
 function updateUIWithNewParameters(){
-
-  console.log("estoy en updateUI");
 
   let masterKeys = Object.keys(mRandomizationMap);
   masterKeys.forEach(key =>{
@@ -190,16 +221,25 @@ function updateUIWithNewParameters(){
           let parsedId = "#"+key + "-"+innerKey;
           let units = (item.units !==undefined)?item.units:"";
           let value = item.value+ " "+units;
-
-          console.log("ID a Update: "+parsedId);
-          
+         
           $(parsedId).html(value);
+
+          
+          let shouldRandomize = item.r;
+          if(shouldRandomize){
+            let masterKeys = Object.keys(mRandomizationMap);
+            let index = masterKeys.indexOf(key);
+            let color = mColors[mInitialColor+index];
+            $(parsedId).css("background-color",color);
+          }else{
+            $(parsedId).css("background-color",mDefaultColor);
+          }
+
+
+
         
       });
   });
-
-
-
 }
 
 
