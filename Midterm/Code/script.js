@@ -22,32 +22,9 @@ function setup(){
     assignSynthParameters();
   });
 
+  assignClickListenersToSynthParamButtons();
 
-  let buttons = $(".synth-param-pair-container").find("button");
-  console.log("Bottones: "+JSON.stringify(buttons,null,null));
-  buttons.each(function(){
-    this.addEventListener("click",function(){
-        // console.log("Click: "+JSON.stringify(event.id,null,null));
-        console.log("ID: "+this.id);
-        let key = this.id.split("-")[0];
-        let innerKey = this.id.split("-")[1];
-
-        mRandomizationMap[key][innerKey].r = !mRandomizationMap[key][innerKey].r;
-        let shouldRandomize = mRandomizationMap[key][innerKey].r;
-
-        if(shouldRandomize){
-          let masterKeys = Object.keys(mRandomizationMap);
-          let index = masterKeys.indexOf(key);
-          let color = mColors[mInitialColor+index];
-          console.log("Color")
-          $(this).css("background-color",color);
-        }else{
-          $(this).css("background-color",mDefaultColor);
-        }
-
-
-    })
-  })
+  createUIKeyboard();
 
 
 
@@ -74,25 +51,32 @@ function setup(){
       let vibrato = new Tone.Vibrato(8,0).toMaster();
       // mSynth.voices[0].oscillator.connect(vibrato);
 
-      mSynth1.volume.value = -25;
+      // mSynth1.volume.value = -25;
       // vibrato.wet.value = 0.5;
 
-      mSynth2.volume.value = -40;
+      // mSynth2.volume.value = -40;
 
       mSynth2.detune.value = 20;
 
       mMidiKeyboard.addListener('noteon','all',function(e){
-        console.log("Recibi noteon. Evento: "+JSON.stringify(e,null,null));
-        mSynth1.triggerAttack(e.note.name+e.note.octave,"+0.0",e.velocity);//,"0",e.velocity);
-        mSynth2.triggerAttack(e.note.name+e.note.octave,"+0.0",e.velocity);//,"0",e.velocity);
-        console.log("Velocity: "+e.velocity);
+        // console.log("Recibi noteon. Evento: "+JSON.stringify(e,null,null));
+        
+        let note = getNoteFromMIDIMessage(e);
+        let velocity = getVelocityFromMIDIMessage(e);
+
+        playNoteOnSynths(note,velocity);
+
+        
         // vibrato.start();
       })
 
       mMidiKeyboard.addListener('noteoff','all',function(e){
         console.log("Recibi noteoff. Evento: "+JSON.stringify(e,null,null));
-        mSynth1.triggerRelease(e.note.name+e.note.octave);
-        mSynth2.triggerRelease(e.note.name+e.note.octave);
+        let note = getNoteFromMIDIMessage(e);
+        stopNoteOnSynths(note);
+
+        // mSynth1.triggerRelease(e.note.name+e.note.octave);
+        // mSynth2.triggerRelease(e.note.name+e.note.octave);
         // vibrato.stop();
       })
 
@@ -186,7 +170,30 @@ function keyPressed(){
   }
 }
 
+function assignClickListenersToSynthParamButtons(){
 
+  let buttons = $(".synth-param-pair-container").find("button");
+  buttons.each(function(){
+    this.addEventListener("click",function(){
+        
+        let key = this.id.split("-")[0];
+        let innerKey = this.id.split("-")[1];
+
+        mRandomizationMap[key][innerKey].r = !mRandomizationMap[key][innerKey].r;
+        let shouldRandomize = mRandomizationMap[key][innerKey].r;
+
+        if(shouldRandomize){
+          let masterKeys = Object.keys(mRandomizationMap);
+          let index = masterKeys.indexOf(key);
+          let color = mColors[mInitialColor+index];
+          $(this).css("background-color",color);
+        }else{
+          $(this).css("background-color",mDefaultColor);
+        }
+    })
+  });
+
+}
 
 function assignSynthParameters(){
 
@@ -223,8 +230,6 @@ function updateUIWithNewParameters(){
           let value = item.value+ " "+units;
          
           $(parsedId).html(value);
-
-          
           let shouldRandomize = item.r;
           if(shouldRandomize){
             let masterKeys = Object.keys(mRandomizationMap);
@@ -234,10 +239,6 @@ function updateUIWithNewParameters(){
           }else{
             $(parsedId).css("background-color",mDefaultColor);
           }
-
-
-
-        
       });
   });
 }

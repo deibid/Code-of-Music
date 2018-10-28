@@ -108,6 +108,51 @@ button#randomize-button{
     width: 100%;
     height:200px;
     background: #434344;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+#black-keys-row-container,
+#white-keys-row-container{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    padding-left: 20px;
+    /* margin-top: 12px; */
+
+}
+
+#white-keys-row-container{
+    padding: 0;
+    margin-top: 12px;
+}
+
+.black-key{
+    background-color:#485973;
+    border-radius: 1000px;
+    width: 28px;
+    height: 28px;
+    margin: 0 2px;
+    
+}
+.black-space-key{
+    z-index: -1000;
+    border-radius: 1000px;
+    width: 28px;
+    height: 28px;
+    margin: 0 6px;
+    /* background-color:red; */
+}
+
+.white-key{
+    background-color:#BDBDBD;
+    border-radius: 10px;
+    width: 28px;
+    height: 80px;
+    margin: 0 6px;
 }
 
 

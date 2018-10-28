@@ -7,7 +7,7 @@ let mRandomizationMap = {
         "volume":{
             "r":false,
             "type":"numeric-integer",
-            "min":-50,
+            "min":-20,
             "max":0,
             "value":-9,
             "units":"dB"
@@ -23,7 +23,7 @@ let mRandomizationMap = {
         "volume":{
             "r":true,
             "type":"numeric-integer",
-            "min":-50,
+            "min":-20,
             "max":0,
             "value":0,
             "units":"dB"
@@ -52,7 +52,7 @@ let mRandomizationMap = {
             "r":true,
             "type":"numeric-normalized",
             "value":0,
-            "units":"%"
+            "units":"/1"
         },
         "release":{
             "r":true,
@@ -102,7 +102,7 @@ let mRandomizationMap = {
             "r":true,
             "type":"numeric-normalized",
             "value":0,
-            "units":"%"
+            "units":"/1"
         },
         "release":{
             "r":true,
@@ -225,6 +225,9 @@ function getRandomInt(min, max) {
 function getRandomNormalizedFloat() {
     return parseFloat(Math.random().toFixed(3));
 }
+
+
+
 
 /** UTILITY STATIC FUNCTIONS */
 
