@@ -99,12 +99,14 @@ function setClickListeners(){
             let id = this.id;
             console.log("mousedown key. ID:> "+id);
             playNoteOnSynths(id,1);
+            setUIKeyToActive(id);
         });
 
         $(this).on("mouseup", function(){
             let id = this.id;
             console.log("mousedown key. ID:> "+id);
             stopNoteOnSynths(id);
+            setUIKeyToInactive(id);
         })
     });
 
@@ -146,6 +148,7 @@ function keyPressed(){
     console.log("note to play "+note);
 
     playNoteOnSynths(note,1);
+    setUIKeyToActive(note);
 
 
 }
@@ -164,5 +167,45 @@ function keyReleased(){
     console.log("note to stop "+note);
 
     stopNoteOnSynths(note);
+    setUIKeyToInactive(note);
 
+}
+
+
+function setUIKeyToActive(note){
+    
+    console.log("id "+note);
+    let className = (note.indexOf("#") === -1) ? "white-key-active": "black-key-active";
+    console.log("ClassName "+className);
+    
+    let selector = escapePoundKey(note);
+    $(selector).addClass(className);
+
+
+}
+
+function setUIKeyToInactive(note){
+    
+    let className = (note.indexOf("#") === -1) ? "white-key-active": "black-key-active";
+
+    let selector = escapePoundKey(note);
+    $(selector).removeClass(className);
+}
+
+
+function escapePoundKey(note){
+
+    if(note.indexOf("#") === -1)return "#"+note;
+
+    let first = note.split("#")[0];
+    let second = note.split("#")[1];
+
+    return "#"+first+"\\#"+second;
+
+}
+
+function jq( myid ) {
+ 
+    return "#" + myid.replace( /(:|\.|\[|\]|,|=|@)/g, "\\$1" );
+ 
 }

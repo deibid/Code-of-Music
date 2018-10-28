@@ -138,6 +138,13 @@ button#randomize-button{
     margin: 0 2px;
     
 }
+
+.black-key-active{
+    background-color:#29374F;
+
+}
+
+
 .black-space-key{
     z-index: -1000;
     border-radius: 1000px;
@@ -153,6 +160,10 @@ button#randomize-button{
     width: 28px;
     height: 80px;
     margin: 0 6px;
+}
+
+.white-key-active{
+    background-color: #6B6B6B;
 }
 
 
