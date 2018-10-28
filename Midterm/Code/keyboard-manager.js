@@ -6,10 +6,15 @@ const NUMBER_OF_KEYS = 61;
 const OCTAVES = 5;
 const INITIAL_OCTAVE = 2;
 const NOTE_PREFIXES = ['C','C#','D','D#','E','F','F#','G','G#','A','A#','B'];
+const NOTES_PER_OCTAVE = 12;
+const COMPUTER_KEYBOARD_OCTAVE_OFFSET = 2;
+
+let mNotes = [];
+let mKeyboardNotes;
+// const KEY_PRESS_MAP = ;
 
 
-
-let mMidiNoteMap = {};
+// let mMidiNoteMap = {};
 
 
 function initializeMidiNoteMap(){
@@ -22,7 +27,6 @@ function initializeMidiNoteMap(){
 
 
 
-
 function createUIKeyboard(){
 
     setBlackKeys();
@@ -30,10 +34,8 @@ function createUIKeyboard(){
 
     setClickListeners();
 
-
-    
-
-
+    populateNotesArray();
+    populateKeyboardNotesArray();
 
 }
 
@@ -91,7 +93,6 @@ function setWhiteKeys(){
 
 function setClickListeners(){
 
-
     $(".piano-key").each(function(){
         $(this).on("mousedown",function(){
             
@@ -107,7 +108,61 @@ function setClickListeners(){
         })
     });
 
+}
+
+function populateNotesArray(){
+
+    for(let i = 0; i<OCTAVES; i++){
+        for(let j = 0; j<NOTES_PER_OCTAVE; j++){
+            let note = NOTE_PREFIXES[j]+(i+INITIAL_OCTAVE);
+            mNotes.push(note);
+        }
+    }
+    mNotes.push("C7");
+}
 
 
+function populateKeyboardNotesArray(){
+
+    mKeyboardNotes = [
+        'z','s','x','d','c','v','g','b','h','n',
+        'j','m','q','2','w','3','e','r','5','t',
+        '6','y','7','u','i','9','o','0','p'];
+
+    console.log("KEYOARD LENGHT:"+mKeyboardNotes.length);
+}
+
+
+function keyPressed(){
+    console.log("KeyPressed: "+key);
+
+    
+    let index = mKeyboardNotes.indexOf(key);
+    if(index === -1)return;
+
+    let offset = COMPUTER_KEYBOARD_OCTAVE_OFFSET*NOTES_PER_OCTAVE;
+    let note = mNotes[index + offset];
+
+    console.log("note to play "+note);
+
+    playNoteOnSynths(note,1);
+
+
+}
+
+function keyReleased(){
+
+    console.log("KeyReleased: "+key);
+
+    
+    let index = mKeyboardNotes.indexOf(key);
+    if(index === -1)return;
+
+    let offset = COMPUTER_KEYBOARD_OCTAVE_OFFSET*NOTES_PER_OCTAVE;
+    let note = mNotes[index + offset];
+
+    console.log("note to stop "+note);
+
+    stopNoteOnSynths(note);
 
 }

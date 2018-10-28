@@ -75,8 +75,7 @@ function setup(){
         let note = getNoteFromMIDIMessage(e);
         stopNoteOnSynths(note);
 
-        // mSynth1.triggerRelease(e.note.name+e.note.octave);
-        // mSynth2.triggerRelease(e.note.name+e.note.octave);
+        
         // vibrato.stop();
       })
 
@@ -158,17 +157,17 @@ function setup(){
 
 
 
-function keyPressed(){
+// function keyPressed(){
 
-  console.log("KeyPressed: "+keyCode);
-  if(keyCode === 65)
-    // mSynth.triggerAttackRelease("c3","8n");
-    mSynth1.triggerAttackRelease("c3","4n")
+  
+//   if(keyCode === 65)
+//     // mSynth.triggerAttackRelease("c3","8n");
+//     mSynth1.triggerAttackRelease("c3","4n")
 
-  if(keyCode === 83){
-    mSynth1.triggerAttackRelease("c4","8n");
-  }
-}
+//   if(keyCode === 83){
+//     mSynth1.triggerAttackRelease("c4","8n");
+//   }
+// }
 
 function assignClickListenersToSynthParamButtons(){
 
