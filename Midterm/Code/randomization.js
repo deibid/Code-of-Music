@@ -9,7 +9,7 @@ let mRandomizationMap = {
             "type":"numeric-integer",
             "min":-20,
             "max":0,
-            "value":-9,
+            "value":0,
             "units":"dB"
         },
         "type":{

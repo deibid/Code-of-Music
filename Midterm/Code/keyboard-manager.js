@@ -11,10 +11,6 @@ const COMPUTER_KEYBOARD_OCTAVE_OFFSET = 2;
 
 let mNotes = [];
 let mKeyboardNotes;
-// const KEY_PRESS_MAP = ;
-
-
-// let mMidiNoteMap = {};
 
 
 function initializeMidiNoteMap(){
@@ -75,7 +71,7 @@ function setWhiteKeys(){
 
     let whiteNotesPrefixes = NOTE_PREFIXES.filter(note=> note.indexOf("#") === -1);
     let whiteKeysRowContainer = $("#white-keys-row-container");
-    let whiteKey;// = "<div class='white-key'></div>"
+    let whiteKey;
 
     for(let i=0; i<OCTAVES; i++){
 
@@ -97,14 +93,14 @@ function setClickListeners(){
         $(this).on("mousedown",function(){
             
             let id = this.id;
-            console.log("mousedown key. ID:> "+id);
+            // console.log("mousedown key. ID:> "+id);
             playNoteOnSynths(id,1);
             setUIKeyToActive(id);
         });
 
         $(this).on("mouseup", function(){
             let id = this.id;
-            console.log("mousedown key. ID:> "+id);
+            // console.log("mousedown key. ID:> "+id);
             stopNoteOnSynths(id);
             setUIKeyToInactive(id);
         })
@@ -136,26 +132,32 @@ function populateKeyboardNotesArray(){
 
 
 function keyPressed(){
-    console.log("KeyPressed: "+key);
+    // console.log("KeyPressed: "+key);
 
     
+
+
     let index = mKeyboardNotes.indexOf(key);
     if(index === -1)return;
+
+
 
     let offset = COMPUTER_KEYBOARD_OCTAVE_OFFSET*NOTES_PER_OCTAVE;
     let note = mNotes[index + offset];
 
-    console.log("note to play "+note);
+    // console.log("note to play "+note);
 
     playNoteOnSynths(note,1);
     setUIKeyToActive(note);
+
+
 
 
 }
 
 function keyReleased(){
 
-    console.log("KeyReleased: "+key);
+    // console.log("KeyReleased: "+key);
 
     
     let index = mKeyboardNotes.indexOf(key);
@@ -164,7 +166,7 @@ function keyReleased(){
     let offset = COMPUTER_KEYBOARD_OCTAVE_OFFSET*NOTES_PER_OCTAVE;
     let note = mNotes[index + offset];
 
-    console.log("note to stop "+note);
+    // console.log("note to stop "+note);
 
     stopNoteOnSynths(note);
     setUIKeyToInactive(note);
@@ -174,9 +176,9 @@ function keyReleased(){
 
 function setUIKeyToActive(note){
     
-    console.log("id "+note);
+    // console.log("id "+note);
     let className = (note.indexOf("#") === -1) ? "white-key-active": "black-key-active";
-    console.log("ClassName "+className);
+    // console.log("ClassName "+className);
     
     let selector = escapePoundKey(note);
     $(selector).addClass(className);
@@ -186,6 +188,7 @@ function setUIKeyToActive(note){
 
 function setUIKeyToInactive(note){
     
+    // console.log("Setting Inactive ;  "+note);
     let className = (note.indexOf("#") === -1) ? "white-key-active": "black-key-active";
 
     let selector = escapePoundKey(note);
